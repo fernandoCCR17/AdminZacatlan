@@ -1,0 +1,58 @@
+extends ./layout/index.pug
+block compartircontenido
+    main
+        .container.my-5  
+            h1.text-center Listado de hoteles
+            .row
+                .col-md-12
+                    .d-flex.align-items-center.justify-content-between.my-3
+                        h2 Nuestros Hoteles
+                        a.m-1.px-4.py-2.btn.bg-primary.text-white.btn-lg.d-flex.align-items-center.rounded-pill.text-uppercase(href=`/anadirHotel`)
+                            img.me-3(src="../img/mas.svg", alt="icono plus")
+                            | Añadir
+                    .tabla
+                        table.table.align-middle.table-bordered.table-hover.text-center
+                            thead.table-dark
+                                tr
+                                    th(scope="col") Nombre
+                                    th(scope="col") Direccion
+                                    th(scope="col") Telefono
+                                    th(scope="col") Correo
+                                    th(scope="col") Gerente
+                                    th(scope="col") Habitación
+                                    th(scope="col") Imagen
+                                    th(scope="col") Acción
+                            tbody
+                                each hotel in hoteles
+                                    tr
+                                        td(scope="row") #{hotel.nombre} 
+                                        td #{hotel.direccion}
+                                        td #{hotel.telefono}
+                                        td #{hotel.correo}
+                                        td
+                                            if hotel.gerente
+                                                |#{hotel.gerente.nombre} #{hotel.gerente.apellido_paterno} #{hotel.gerente.apellido_materno}
+                                            else 
+                                                span.tw-bold.text-uppercase Aún sin asignar
+                                        td
+                                            if hotel.habitaciones != ''
+                                                each habitacion in hotel.habitaciones 
+                                                    each catalogo in cat
+                                                        if habitacion.id_cat == catalogo.id_cat  
+                                                            |#{catalogo.tipo} 
+                                                            br
+                                            else
+                                                span.tw-bold.text-uppercase Aún sin asignar
+                                        td 
+                                            if hotel.hotel_imgs
+                                                each imagen in hotel.hotel_imgs
+                                                    |#{imagen.img_hotel}
+                                                    br
+                                        td
+                                            a.my-1.mx-2.px-2.btn.btn-success.btn-lg(href=`/editarHotel/${hotel.id_htl}`) Modificar
+                                            a.my-1.mx-2.px-2.btn.btn-danger.btn-lg(href=`/deleteHotel/${hotel.id_htl}`) Eliminar
+                                if hoteles == ''
+                                    tr 
+                                        td(colspan="8").fw-bold.text-uppercase
+                                            span.tw-bold.text-uppercase Aun no se ha creado un hotel
+                                    

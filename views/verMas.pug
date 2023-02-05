@@ -1,0 +1,45 @@
+extends ./layout/indexPublico.pug
+block compartircontenido
+    main
+        .container 
+            h1.text-center.my-5 Hotel #{hotel.nombre}
+
+            .row.d-flex.align-items-center.justify-content-center.mx-auto
+                .col-12.col-md-5
+                    p 
+                        span Dirección: 
+                        |#{hotel.direccion}
+                    p 
+                        span Correo: 
+                        |#{hotel.correo}
+                    p 
+                        span Telefono: 
+                        |#{hotel.telefono}
+                .col-12.col-md-4.text-center
+                    h2.fw-bold Gerente 
+                    if hotel.gerente
+                        img.imagen-gerente(src=`../img/Gerentes/${hotel.gerente.img_gerente}`, alt="")
+                        p #{hotel.gerente.nombre} #{hotel.gerente.apellido_paterno} #{hotel.gerente.apellido_materno}
+                        p 
+                            span Telefono del gerente: 
+                            | #{hotel.gerente.telefono}
+                    else
+                        p AÚN NO SE ASIGNA UN GERENTE  
+                        
+            
+            h2.text-center Habitaciones
+            if habitaciones != ''
+                each habitacion in habitaciones  
+                    h3.text-center Habitación #{habitacion.catalogo.tipo} 
+                    .row.d-flex.my-5.contenedor-imagenHabitaciones
+                        each imgHab in imagenHab
+                            if imgHab.id_hbt == habitacion.id_hbt
+                                .col-6.col-md-4.col-lg-3.img-hab.mb-3
+                                    img(src=`../img/Habitaciones/${imgHab.habImg}` class="imagenHabitaciones" alt=`Imagen de la habitacion ${habitacion.catalogo.tipo}`)    
+            else 
+                p AÚN NO SE ASIGNA UNA HABITACIÓN
+            h2.text-center Imagenes del Hotel
+            .row.d-flex.my-5.contenedor-imagenHabitaciones
+                each hotelImg in hotelImgs  
+                    .col-6.col-md-4.col-lg-3.img-hot.mb-4
+                        img(src=`../img/Hoteles/${hotelImg.img_hotel}` class="imagenHoteles" alt=`Imagen del hotel ${hotel.nombre}`)    

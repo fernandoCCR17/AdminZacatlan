@@ -1,0 +1,43 @@
+extends ./layout/index.pug
+block compartircontenido
+    main
+        .container.my-5  
+            h1.text-center Listado de habitaciones
+            .row.d-flex.justify-content-center
+                .col-md-8
+                    .d-flex.align-items-center.justify-content-between.my-3
+                        h2 Nuestras Habitaciones
+                        a.m-1.px-4.py-2.btn.bg-primary.text-white.btn-lg.d-flex.align-items-center.rounded-pill.text-uppercase(href=`/anadirHabitacion`)
+                            img.me-3(src="../img/mas.svg", alt="icono plus")
+                            | Añadir
+                    .table-responsive-lg
+                        table.table.align-middle.table-bordered.table-hover.text-center
+                            thead.table-dark
+                                tr
+                                    th(scope="col") Tipo
+                                    th(scope="col") Hotel
+                                    th(scope="col") Imagen
+                                    th(scope="col") Acción
+                            tbody
+                                each habitacion in habitaciones
+                                    tr
+                                        td(scope="row") #{habitacion.catalogo.tipo} 
+                                        td 
+                                            
+                                            each hotel in hoteles
+                                                if habitacion.id_htl === hotel.id_htl
+                                                        |#{hotel.nombre}
+
+                                        td 
+                                            each imagen in imagenes    
+                                                if imagen.id_hbt == habitacion.id_hbt
+                                                    |#{imagen.habImg} 
+                                                    br
+                                        
+                                        td
+                                            a.my-1.mx-2.px-2.btn.btn-success.btn-lg(href=`/editarHabitacion/${habitacion.id_hbt}`) Modificar
+                                            a.my-1.mx-2.px-2.btn.btn-danger.btn-lg(href=`/deleteHabitacion/${habitacion.id_hbt}`) Eliminar
+                                if habitaciones == ''
+                                    tr 
+                                        td(colspan="4").fw-bold.text-uppercase
+                                            span.tw-bold.text-uppercase Aun no se ha creado una habitación

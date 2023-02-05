@@ -1,0 +1,32 @@
+extends ./layout/index.pug
+block compartircontenido
+    main
+        .container 
+            h1.text-center.mt-5 #{pagina}
+            .row
+                .col-md-12
+                    if(errores)
+                        each error in errores 
+                            .alert.col.alert-danger.text-center=error.mensaje
+
+            .row.d-flex.justify-content-center.mb-5
+                .col-12.col-md-6
+                    form(action=`/editarGerente/${id_grt}` method="POST" enctype="multipart/form-data")
+                        .form-group
+                            label(for="nombre") Nombre del gerente:
+                            input(type="text" class="form-control form-control-lg" id="nombre" name="nombre" value=nombre placeholder="Ingresa el nombre del gerente")
+                        .form-group
+                            label(for="apellido_paterno") Apellido paterno del gerente:
+                            input(type="text" class="form-control form-control-lg" id="apellido_paterno" name="apellido_paterno" value=apellido_paterno placeholder="Ingresa el apellido paterno del gerente")
+                        .form-group
+                            label(for="apellido_materno") Apellido materno del gerente:
+                            input(type="text" class="form-control form-control-lg" id="apellido_materno" name="apellido_materno" value=apellido_materno placeholder="Ingresa el apellido materno del gerente")
+                        .form-group
+                            label(for="telefono") Teléfono del gerente:
+                            input(type="number" class="form-control form-control-lg" id="telefono" name="telefono" value=telefono placeholder="Telefono ejem: 55-1234-5678 o 5512345678")
+                        .form-group
+                            label(for="myFiles" class="form-label") Seleccione la imagen del gerente:
+                            input#myFiles.form-control.form-control-lg(type="file", accept="image/*", name="archivo", value='archivo')
+                        .d-flex.justify-content-between.my-4
+                            input.btn.btn-success.btn-lg.btn-block(type="submit" value="Modificar")
+                            a.text-light.btn.btn-warning.btn-lg.btn-block(href="/listaGerentes") Lista Gerentes

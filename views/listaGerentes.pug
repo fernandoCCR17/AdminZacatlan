@@ -1,0 +1,42 @@
+extends ./layout/index.pug
+block compartircontenido
+    main
+        .container.my-5  
+            h1.text-center Listado de gerentes
+            .row.d-flex.justify-content-center
+                .col-md-10
+                    .d-flex.align-items-center.justify-content-between.my-3
+                        h2 Nuestros Gerentes
+                        a.m-1.px-4.py-2.btn.bg-primary.text-white.btn-lg.d-flex.align-items-center.rounded-pill.text-uppercase(href=`/anadirGerente`)
+                            img.me-3(src="../img/mas.svg", alt="icono plus")
+                            | Añadir
+                    .table-responsive-md
+                        table.table.align-middle.table-bordered.table-hover.text-center
+                            thead.table-dark
+                                tr
+                                    th(scope="col") Nombre
+                                    th(scope="col") Apellido Paterno
+                                    th(scope="col") Apellido Materno
+                                    th(scope="col") Telefono
+                                    th(scope="col") Imagen
+                                    th(scope="col") Hotel Encargado
+                                    th(scope="col") Acción
+                            tbody
+                                each gerente in gerentes
+                                    tr
+                                        td(scope="row") #{gerente.nombre} 
+                                        td #{gerente.apellido_paterno}
+                                        td #{gerente.apellido_materno}
+                                        td #{gerente.telefono}
+                                        td #{gerente.img_gerente}
+                                        td  
+                                            each hotel in hoteles   
+                                                if hotel.id_grt == gerente.id_grt 
+                                                    |#{hotel.nombre} 
+                                        td
+                                            a.my-1.mx-2.px-2.btn.btn-success.btn-lg(href=`/editarGerente/${gerente.id_grt}`) Modificar
+                                            a.my-1.mx-2.px-2.btn.btn-danger.btn-lg(href=`/deleteGerente/${gerente.id_grt}`) Eliminar
+                                if gerentes == ''
+                                    tr 
+                                        td(colspan="7").fw-bold.text-uppercase
+                                            span.tw-bold.text-uppercase Aun no se ha creado un gerente

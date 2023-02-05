@@ -1,0 +1,24 @@
+extends ./layout/indexLogin.pug
+block compartircontenido
+    .py-5
+        h1.text-center.fw-bold Zacatlan 
+            span de las Manzanas
+        h2.my-5.fs-1.text-center.fw-bold #{pagina}  
+        .row
+                .col-md-12
+                    if(errores)
+                        each error in errores 
+                            .alert.col.alert-danger.text-center=error.mensaje
+        .mt-5.mx-auto.mw
+            .row 
+                .col-10.col-md-5.mx-auto
+                    form.w-100.rounded.rounded-3.px-4.py-5.bg-light.formulario.border.border-1(action = "/credenciales" method="POST" novalidate)
+                        div.mb-4    
+                            label.fw-bold.text-uppercase.text-muted.form-label(for="email") Email de Registro: 
+                            input.rounded.form-control.form-control-lg(placeholder="Tu Email" type="email" name="email" value=email id="email")
+                            p.form-text Nunca compartiremos tu correo electrónico con nadie más.
+                        div.mb-5     
+                            label.fw-bold.text-uppercase.text-muted.form-label(for="password") Password: 
+                            input.rounded.form-control.form-control-lg(placeholder="Tu Password" type="password" name="password" id="password")
+                        
+                        input.bg-primary.text-white.form-control.form-control-lg.mt-5(id="enviar",type="submit", value="Ingresar Cuenta")

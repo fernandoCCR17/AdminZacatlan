@@ -1,0 +1,47 @@
+extends ./layout/indexPublico.pug
+block compartircontenido
+    .portada.mb-5
+        .container
+            .row
+                .col-12
+                    h1 Zacatlán de las manzanas
+                    p Pueblo mágico
+    .container.my-5
+        div
+            h2.text-center Hoteles en Zacatlán de las manzanas
+            .row 
+                .col-12.introduccion
+                    p En la Sierra Norte de Puebla se encuentra uno de los seis pueblos mágicos de Puebla que tuvimos la fortuna de visitar y, como muchos ya saben, se convirtió en uno de nuestros favoritos. Hablemos de Zacatlán de las Manzanas.
+
+                    p Zacatlán de las manzanas es un pueblo realmente tranquilo. ¿A qué me refiero? Aunque tiene mucho por hacer y conocer, tiene ciertos espacios en los que te puedes dar momentos de tranquilidad (si así lo quieres).
+    main
+        .container
+            each hotel in hotelesLista
+                .row.my-5.hotel.mx-auto
+                    .col-12.col-md-3.contenedor.p-0
+                        .carrusel 
+                            .carrusel-items         
+                                each imagen in hotel.hotel_imgs
+                                    .carrusel-item
+                                        img(src=`img/Hoteles/${imagen.img_hotel}`, alt="")
+
+
+                    .col-12.col-md-6.d-flex.align-items-center.justify-content-center
+                        div.ms-5 
+                            h3.hotel-titulo Hotel: #{hotel.nombre}
+                            div
+                                if hotel.gerente
+                                    p Gerente: #{hotel.gerente.nombre} #{hotel.gerente.apellido_paterno} #{hotel.gerente.apellido_materno}
+                                else    
+                                    p Aun sin asignar
+                                p Direccion: #{hotel.direccion}
+                                p Correo: #{hotel.correo}
+                                p Telefono: #{hotel.telefono}
+                    .col-12.col-md-3.d-flex.align-items-center.justify-content-center
+                        div 
+                            p.hotel-precio Precio: 
+                                span.hotel-precio-weight $700
+                            a.hotel-btn(href=`/verMas/${hotel.id_htl}`) 
+                                p.hotel-btn-text Ver mas
+                                img.ml-2(src="../img/apple.svg", alt="icono manzana", fill="#fff", width=20)
+    

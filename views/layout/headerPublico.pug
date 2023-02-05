@@ -1,0 +1,46 @@
+header
+    nav
+        .container
+            .row.d-flex.justify-content-between
+                if usuraioRol
+                    .col-12.col-md-3.p-0.d-flex.justify-content-center
+                        a(href="/publicidad")
+                            img(src="/img/Logo.png",width=100,class="img-fluid logo", alt="Imagen equipo",height =200)
+                    .col-12.col-md-7.col-lg-6.p-0.d-flex.flex-row.align-items-center
+                        ul.enlaces.d-flex.flex-column.flex-sm-row.justify-content-between
+                            li
+                                a(href="/publicidad" class="btn btn-lg btn-color") Inicio
+                            li(class="dropdown")
+                                a(class="btn btn-lg btn-color dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false") Hoteles 
+
+                                ul(class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink")
+                                    li
+                                        a(class="dropdown-item" href="/anadirHotel") Añadir Hotel
+                                    li
+                                        a(class="dropdown-item" href="/listaHoteles") Lista Hoteles
+                            li(class="dropdown")
+                                a(class="btn btn-lg btn-color dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false") Gerentes
+
+                                ul(class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink")
+                                    li
+                                        a(class="dropdown-item" href="/anadirGerente") Añadir Gerente
+                                    li
+                                        a(class="dropdown-item" href="/listaGerentes") Lista Gerentes
+                            li(class="dropdown")
+                                a(class="btn btn-lg btn-color dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false") Habitaciones
+
+                                ul(class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink")
+                                    li
+                                        a(class="dropdown-item" href="/anadirHabitacion") Añadir Habitación
+                                    li
+                                        a(class="dropdown-item" href="/listaHabitaciones") Lista Habitaciones
+                            li
+                                a(href="/cerrarsesion" class="btn btn-lg btn-color") Cerrar Sesion 
+                else 
+                    .col-6.col-md-3.p-0.d-flex.justify-content-center
+                        a(href="/publicidad")
+                            img(src="/img/Logo.png",width=100,class="img-fluid logo", alt="Imagen equipo",height =200)
+                    .col-6.col-md-1.col-lg-1.p-0.d-flex.flex-row.align-items-center
+                        ul.enlaces
+                            li.mx-auto
+                                a(href="/publicidad" class="btn btn-lg btn-color") Inicio

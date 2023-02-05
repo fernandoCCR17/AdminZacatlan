@@ -1,0 +1,469 @@
+:root{
+    --colorPrincipal: #720004;
+    --colorCard: #0D3B66;
+    --colorEnlace: #c19717;
+    --fondo: #e8d4b6;
+    --colorPrincipalTransparente: rgba(55, 76, 80, 0.7);
+    --colorSecundario: #5B8218;
+    --colorFuente: #efefef;
+    --blanco: #e8d4b6;
+    --fuenteParrafos:'Roboto Condensed', sans-serif;
+    --fuenteTitulos: 'Tinos', serif;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; 
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body{
+    font-size: 1.6rem;
+    font-family: var(--fuenteParrafos);
+    color: #000;
+    background-color: var(--fondo);
+}
+
+main{
+    min-height: 63.4vh;
+}
+
+.inicio-main{
+    min-height: 66.4vh;
+}
+
+.introduccion{
+    color: #000;
+}
+
+h1{
+    font-size: 3rem;
+}
+
+@media (min-width: 768px) {
+    h1{
+        font-size: 5rem;
+    }
+}
+
+h1,h2,h3{
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: var(--fuenteTitulos);
+}
+
+.img-form{
+    border-radius: 1.5rem;
+}
+
+.logo{
+    height: 12rem;
+    width: 11rem;
+    /* max-width: 12rem;
+    min-width: 8rem; */
+}
+
+/* Header */
+
+.navbar{
+    height: 11rem;
+}
+
+.enlaces{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    list-style: none;
+    gap: 1rem;
+}
+
+.btn-color{
+    background-color: var(--colorPrincipal);
+    color: var(--colorFuente);
+}
+.btn-color:hover{
+    border: 1px solid var(--colorPrincipal);
+}
+
+.dropdown-item{
+    font-size: 1.4rem;
+}
+
+.nav-link{
+    color: #fff;
+}
+/* Header */
+
+/* Portada */
+.portada{
+    background-image: linear-gradient(to right, var(--colorPrincipalTransparente) 0%, var(--colorPrincipalTransparente) 100%), url("/img/zacatlan.png");
+    background-size: cover;
+    background-position: bottom;
+    padding-block: 5rem;
+    min-height: 30rem;
+    color: var(--colorFuente);
+    display: flex;
+    align-items: center;
+
+}
+
+.portada p{
+    font-size: 4rem;
+    font-weight: 700;
+}
+/* Portada */
+
+/* Cartel */
+.cartel{
+    height: 20rem;
+    width: 40rem;
+    position: relative;
+    margin: 0 auto;
+}
+.cartel img{
+    height: 100%;
+    width: 100%;
+}
+.cartel h2{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* Cartel */
+
+/* card main */
+.hotel{
+    background: rgb(109,0,16);
+    background: linear-gradient(90deg, rgba(109,0,16,1) 0%, rgba(109,0,16,1) 54%, rgba(226,30,13,1) 100%);
+    border-radius: 2rem;
+    overflow: hidden;
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: #dcdcdc;
+    text-align: center;
+}
+
+@media (min-width: 400px) {
+    .hotel{
+        max-width: 34rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .hotel{
+        margin-inline: 0!important;
+        text-align: left;
+        font-size: 1.8rem;
+        max-width: none;
+        min-height: 28rem;
+        max-height: 29rem;
+    }
+}
+
+.hotel-titulo{
+    font-size: 1.8rem;
+}
+
+@media (min-width: 768px) {
+    .hotel-titulo{
+        font-size: 2rem;
+    }
+}
+
+.hotel-contenedor-img{
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hotel-contenedor-img img{
+    width: 100%;
+    height: 20rem;
+    max-width: 20rem;
+    max-height: 20rem;
+}
+
+@media (min-width: 768px) {
+    .hotel-contenedor-img{
+        height: auto;
+    }
+    
+    .hotel-contenedor-img img{
+        height: 100%;
+        /* max-height: 25rem; */
+    }
+}
+
+.hotel-contenido{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .hotel-contenido_border{
+        border-right: 1px dashed #fff;
+    }
+}
+
+.hotel-contenido div{
+    margin-top: 3rem;
+}
+
+.hotel-contenido div p{
+    text-transform: none;
+}
+
+.hotel-precio{
+    text-transform: none;
+    font-size: 1.6rem;
+}
+
+.hotel-precio-weight{
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.hotel-btn{
+    background-color: var(--colorSecundario);
+    padding: 1rem 1.5rem;
+    border-radius: 2rem;
+}
+.hotel-btn-text{
+    display: inline-block;
+    font-style: none;
+    margin-right: 1rem;
+    text-transform: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--colorFuente);
+}
+
+@media (min-width: 998px) {
+    .hotel-btn{
+        font-size: 2rem;
+        padding: 1rem 3rem;
+    }
+}
+
+.tabla{
+    overflow-x: scroll;
+}
+
+@media (min-width: 1000px) {
+    .tabla{
+        overflow: unset;
+    }
+}
+.hotel-btn:hover{
+    background-color: #a27217;
+}
+
+.hotel-btn:hover .hotel-btn-text{
+    text-decoration: underline;
+}
+
+.card{
+    border-radius: 1.3rem;
+}
+.lista{
+    max-height: 11.7rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.card-body{
+    width: 100%;
+    margin: .2rem auto  .2rem 2rem;
+}
+span{
+    font-weight: bold;
+}
+
+.card span, .card .btn{
+    font-weight: normal;
+}
+/* card main */
+
+/* relacion hotel */
+
+/* relacion hotel */
+
+/* Footer */
+footer{
+    background-color: var(--colorPrincipal);
+}
+
+footer nav a,
+footer p{
+    color: var(--colorFuente);
+}
+footer nav .nav-link-footer:hover{
+    color: var(--colorSecundario);
+    text-decoration: underline;
+}
+/* Footer */
+
+/* Form de las imagenes */
+.carrusel-items{
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.carrusel-item{
+    min-width: 100%;
+    height: 29rem;
+    max-height: 29rem;
+}
+
+.carrusel-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imagen-gerente{
+    width: 100%;
+    height: 100%;
+    min-width: 14.5rem;
+    min-height: 19.2rem;
+    max-width: 18.5rem;
+    max-height: 23.2rem;
+    border-radius: 1rem;
+}
+
+.contenedor-imagenHabitaciones{
+    height: auto;
+    overflow: hidden;
+}
+
+.img-hab{
+    height: 20rem;
+}
+.img-hot{
+    height: 100%;
+    overflow: hidden;
+}
+
+.imagenHabitaciones{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.imagenHoteles{
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+    overflow: hidden;
+    transition-property: transform;
+    transition-duration: .3s;
+}
+
+.imagenHoteles:hover{
+    transform: scale(1.1);
+}
+/* Publlicidad */
+.contenedorInfo{
+    max-width: 120rem;
+    margin: 0 auto;
+    width: 80%;
+}
+/* Nosotros */
+.nosotros{
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    background-image: url(../img/FeriaDeLaManzana.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+}
+@media (min-width: 992px) {
+    .nosotros{
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+}
+.contenido-nosotros{
+    background-color: var(--blanco);
+    padding: 5rem;
+}
+@media (min-width: 992px) {
+    .contenido-nosotros{
+        grid-column: 2/4;
+        border-radius: 3rem;
+    }
+}
+.contenido-nosotros h2, 
+.contenido-nosotros p{
+    margin-bottom: 1rem;
+}
+/* Modelos */
+.modelo{
+    display: grid;
+    grid-template-rows: repeat(2,1fr);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    margin-bottom: 2rem;
+}
+.modelo:last-of-type{
+    margin: 0;
+}
+@media (min-width: 768px) {
+    .modelo{
+        margin-bottom: 4rem;
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+.contenido-modelo{
+    padding: 5rem;
+    background-color: var(--blanco);
+    padding: 5rem;
+}
+
+.basico{
+    background-image: url(../img/plazaDeArmas.jpg);
+}
+@media (min-width: 768px) {
+    .basico{
+        background-position: top right;
+    }
+    .basico .contenido-modelo{
+        grid-row: 2 / 3;
+        padding: 2rem 2rem 2rem 0;
+    }
+}
+.premier{
+    background-image: url(../img/museo.jpg);
+    background-size: contain;
+}
+@media (min-width: 768px) {
+    .premier{
+        background-position: top left;
+    }
+    .premier .contenido-modelo{
+        grid-column: 2 / 3;
+        padding: 2rem;
+    }
+}
+.elite{
+    background-image: url(../img/FeriaDeLaManzana.jpg);
+}
+@media (min-width: 768px) {
+    .elite {
+        background-position: top right;
+    }
+    .elite .contenido-modelo{
+        grid-row: 2 / 3;
+        padding: 2rem 2rem 2rem 0;
+    }
+}

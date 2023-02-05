@@ -1,0 +1,29 @@
+extends ./layout/index.pug
+block compartircontenido
+    main
+        .container 
+            h1.text-center.mt-5 #{pagina}
+            .row
+                .col-md-12
+                    if(errores)
+                        each error in errores 
+                            .alert.col.alert-danger.text-center=error.mensaje
+
+            .row.d-flex.justify-content-center.align-items-center
+                .col-12.col-md-6
+                    form(action=`/editarHabitacion/${id_hbt}`, method="POST", enctype="multipart/form-data")
+                        .form-group
+                            label(for="tipo") Tipo de Habitación:
+                            select(id="id_cat",name="id_cat",class="form-control form-control-lg")
+                                option(selected disabled) Seleccionar
+                                each tipo in catalogo
+                                    if miHabitacion == tipo.id_cat
+                                        option(value=tipo.id_cat selected) #{tipo.tipo}
+                                    else
+                                        option(value=tipo.id_cat) #{tipo.tipo}
+                        .form-group
+                            label(for="myFiles" class="form-label") Seleccione las imagenes de la habitación:
+                            input#myFiles.form-control.form-control-lg(type="file", accept="image/*", name="archivo", value='archivo', multiple)
+                        .d-flex.justify-content-between.my-4
+                            input.btn.btn-success.btn-lg.btn-block(type="submit", value="Modificar")
+                            a.text-light.btn.btn-warning.btn-lg.btn-block(href="/listaHabitaciones") Lista Habitaciones

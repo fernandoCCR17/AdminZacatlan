@@ -1,0 +1,74 @@
+extends ./layout/index.pug
+block compartircontenido
+    main
+        .container 
+            h1.text-center.mt-5 #{pagina}
+            .row
+                .col-md-12
+                    if(errores)
+                        each error in errores 
+                            .alert.col.alert-danger.text-center=error.mensaje
+
+            .row.d-flex.justify-content-center
+                .col-12.col-md-6
+                    form(action="/anadirHotel" method="POST" enctype="multipart/form-data" novalidate)
+                        .form-group
+                            label(for="nombre") Nombre del hotel:
+                            input(type="text" class="form-control form-control-lg" id="nombre" name="nombre" value=datos ? datos.nombre : '' placeholder="Ingresa el nombre del hotel")
+                        .form-group
+                            label(for="direccion") Direccion del hotel:
+                            input(type="text" class="form-control form-control-lg" id="direccion" name="direccion" value=datos ? datos.direccion : '' placeholder="Ingresa la direccion del hotel")
+                        .form-group
+                            label(for="telefono") Telefono del hotel:
+                            input(type="number" class="form-control form-control-lg" id="telefono" name="telefono" value=datos ? datos.telefono : '' placeholder="Telefono ejem: 55-1234-5678 o o 5512345678")
+                        .form-group
+                            label(for="correo") Correo del hotel:
+                            input(type="email" class="form-control form-control-lg" id="correo" name="correo" value=datos ? datos.correo : '' placeholder="Ingresa el correo del hotel")
+                        .form-group
+                            if gerentes != ''
+                                label(for="id_grt") Gerente:
+                                select(id="id_grt",name="id_grt",class="form-control form-control-lg")
+                                    option(selected disabled) Seleccionar
+                                    each gerente in gerentes
+                                        if miGerente == gerente.id_grt
+                                            option(value=gerente.id_grt selected) #{gerente.nombre} #{gerente.apellido_paterno} #{gerente.apellido_materno}
+                                        else
+                                            option(value=gerente.id_grt) #{gerente.nombre} #{gerente.apellido_paterno} #{gerente.apellido_materno}
+                            else 
+                                p.fw-bold.text-uppercase.my-3 
+                                    a(href="/anadirGerente") No hay gerentes disponibles, de click aquí para crear uno.
+                        .form-group
+                            if habitaciones != '' || misHabitaciones
+                                p.m-0 Selecciona sus habitaciones:
+                                .card#lista
+                                    .card-body.mx-2
+                                        label.item.disabled.d-flex.alig-items-center.gap-3
+                                            input.item(type="checkbox" name="id_hbt" disabled) 
+                                            | Seleccionar
+                                        if misHabitaciones
+                                            each miHabitacion in misHabitaciones
+                                                label.item.d-flex.alig-items-center.gap-3
+                                                    input.item(type="checkbox" name="id_hbt" value=miHabitacion.id_hbt checked) 
+                                                    | Habitación tipo #{miHabitacion.catalogo.tipo}
+                                        each habitacion in habitaciones
+                                            label.item.d-flex.alig-items-center.gap-3
+                                                input.item(type="checkbox" name="id_hbt" value=habitacion.id_hbt) 
+                                                | Habitación tipo #{habitacion.catalogo.tipo}
+                            else 
+                                p.fw-bold.text-uppercase.my-3
+                                    a(href="/anadirHabitacion") No hay habitaciones disponibles, de click aquí para crear una.
+                        .form-group
+                            label(for="myFiles" class="form-label") Seleccione las imagenes del hotel:
+                            input#myFiles.form-control.form-control-lg(type="file", accept="image/*", name="archivo", value='archivo', multiple)
+                        .d-flex.justify-content-between.my-4
+                            input.btn.btn-success.btn-lg.btn-block(type="submit", value="Añadir Hotel")
+                            a.btn.btn-warning.btn-lg.btn-block.text-white(href="/listaHoteles") Lista Hoteles
+        script(type='text/javascript').
+            window.onload = function(){ 
+                let listaDiv = document.getElementById('lista').offsetHeight;
+                if(listaDiv > 116){
+                    document.getElementById('lista').classList.add('lista');
+                }else{
+
+                }
+            }

@@ -1,0 +1,68 @@
+extends ./layout/index.pug
+block compartircontenido
+    main
+        .container 
+            h1.text-center.mt-5 #{pagina}
+            .row
+                .col-md-12
+                    if(errores)
+                        each error in errores 
+                            .alert.col.alert-danger.text-center=error.mensaje
+
+            .row.d-flex.justify-content-center
+                .col-12.col-md-6
+                    form(action=`/editarHotel/${id_htl}` method="POST" enctype="multipart/form-data" novalidate)
+                        .form-group
+                            label(for="nombre") Nombre del hotel:
+                            input(type="text" class="form-control form-control-lg" id="nombre" name="nombre" value=datos ? datos.nombre : '' placeholder="Ingresa el nombre del hotel")
+                        .form-group
+                            label(for="direccion") Direccion del hotel:
+                            input(type="text" class="form-control form-control-lg" id="direccion" name="direccion" value=datos ? datos.direccion : '' placeholder="Ingresa la direccion del hotel")
+                        .form-group
+                            label(for="telefono") Telefono del hotel:
+                            input(type="number" class="form-control form-control-lg" id="telefono" name="telefono" value=datos ? datos.telefono : '' placeholder="Telefono ejem: 55-1234-5678 o o 5512345678")
+                        .form-group
+                            label(for="correo") Correo del hotel:
+                            input(type="email" class="form-control form-control-lg" id="correo" name="correo" value=datos ? datos.correo : '' placeholder="Ingresa el correo del hotel")
+                        .form-group
+                            label(for="id_grt") Gerente:
+                            select(id="id_grt",name="id_grt",class="form-control form-control-lg")
+                                option(selected disabled) Seleccionar
+                                if miGerente
+                                    option(value=miGerente.id_grt selected) #{miGerente.nombre} #{miGerente.apellido_paterno} #{miGerente.apellido_materno}
+                                each gerente in gerentes
+                                    option(value=gerente.id_grt) #{gerente.nombre} #{gerente.apellido_paterno} #{gerente.apellido_materno}
+                        .form-group.contenedor
+                            p Selecciona sus habitaciones:
+                            .card#lista
+                                .card-body
+                                    label.mb-0.item.disabled.d-flex.alig-items-center
+                                        input.item(type="checkbox" name="id_hbt" class="mr-5" disabled) 
+                                        | Seleccionar 
+                                    if misHabitaciones
+                                        each misHab in misHabitaciones
+                                            label.mb-0.item.d-flex.alig-items-center
+                                                input.item(type="checkbox",name="id_hbt",value=misHab.id_hbt,class="mr-5",checked) 
+                                                | Habitación tipo #{misHab.catalogo.tipo}
+                                    if habitaciones != ''
+                                        each habitacion in habitaciones
+                                            label.mb-0.item.d-flex.alig-items-center
+                                                input.item(type="checkbox" name="id_hbt" value=habitacion.id_hbt class="mr-5") 
+                                                | Habitación tipo #{habitacion.catalogo.tipo}
+                                    else    
+                                        label No hay habitaciones disponibles
+                        .form-group
+                            label(for="myFiles" class="form-label") Seleccione las imagenes del hotel:
+                            input#myFiles.form-control.form-control-lg(type="file", accept="image/*", name="archivo", value='archivo', multiple)
+                        .d-flex.justify-content-between.my-4
+                            input.btn.btn-success.btn-lg.btn-block(type="submit", value="Modificar")
+                            a.btn.btn-warning.btn-lg.btn-block.text-white(href="/listaHoteles") Lista Hoteles
+        script(type='text/javascript').
+            window.onload = function(){ 
+                let listaDiv = document.getElementById('lista').offsetHeight;
+                if(listaDiv > 116){
+                    document.getElementById('lista').classList.add('lista');
+                }else{
+
+                }
+            }
